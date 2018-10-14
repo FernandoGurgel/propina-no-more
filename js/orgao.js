@@ -1,9 +1,9 @@
 var sigla = [];
 var descricao = [];
-$.getJSON("https://raw.githubusercontent.com/FernandoGurgel/propina-no-more/master/Back-end/json/orgaos.json", function(data){
+$.getJSON("https://raw.githubusercontent.com/FernandoGurgel/propina-no-more/master/Back-end/json/orgao_nome.json", function(data){
 	for(x =0; x<data.length; x++){
-	    sigla.push( data[x].a);
-		descricao.push( data[x].b);
+	    sigla.push( data[x].sigla);
+		descricao.push( data[x].nome);
 	}
 });
 

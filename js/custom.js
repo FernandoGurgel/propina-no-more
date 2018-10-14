@@ -1,3 +1,32 @@
+$.getJSON('https://raw.githubusercontent.com/FernandoGurgel/propina-no-more/master/Back-end/totalCompras2018.json',function(data){
+	var num = data[0].VALOR_TOTAL_COMPRAS+" ";
+	var ponto = num.indexOf(".")+3;
+	console.log(ponto);
+	$('#totalAno').text(num.substring(0,ponto));
+  $("#totalAno").priceFormat({
+    prefix: 'R$ ',
+    centsSeparator: ',',
+    thousandsSeparator: '.'
+  });
+});
+
+$.getJSON('https://raw.githubusercontent.com/FernandoGurgel/propina-no-more/master/Back-end/top4Orgaos_2018.json',function(data){
+	for(x=0; x < data.length; x++){
+    var valor = "#valor"+(x+1);
+		var nome = "#nome"+(x+1);
+		var num = data[x].VALOR_TOTAL_COMPRAS+" ";
+		var ponto = num.indexOf(".")+3;
+
+		$(valor).text(num.substring(0,ponto));
+		$(nome).text(data[x].UG_SIGLA);
+		$(valor).priceFormat({
+            prefix: 'R$ ',
+            centsSeparator: ',',
+            thousandsSeparator: '.'
+          });
+	}
+})
+
 
 $(document).ready(function() {
 
