@@ -12,7 +12,7 @@ $.getJSON('https://raw.githubusercontent.com/FernandoGurgel/propina-no-more/mast
 
 $.getJSON('https://raw.githubusercontent.com/FernandoGurgel/propina-no-more/master/Back-end/top4Orgaos_2018.json',function(data){
 	for(x=0; x < data.length; x++){
-    var valor = "#valor"+(x+1);
+        var valor = "#valor"+(x+1);
 		var nome = "#nome"+(x+1);
 		var num = data[x].VALOR_TOTAL_COMPRAS+" ";
 		var ponto = num.indexOf(".")+3;
