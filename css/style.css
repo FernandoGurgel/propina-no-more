@@ -483,14 +483,14 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .stats-col .circle {
   display: inline-block;
-  width: 160px;
-  height: 160px;
+  width: 195px;
+  height: 195px;
   font-family: "Raleway", Helvetica, Arial, sans-serif;
   font-weight: 500;
   color: #666;
   border: 6px solid #199EB8;
   border-radius: 50%;
-  padding: 55px 25px 0 25px;
+  padding: 80px 16px 0 25px;
   position: relative;
 }
 

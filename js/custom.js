@@ -29,7 +29,7 @@ $.getJSON('https://raw.githubusercontent.com/FernandoGurgel/propina-no-more/mast
                     target.text('R$' + floored_number);
                 }
             },
-            2000,
+            5000,
             function () {
                 $('#totalAno').priceFormat({
                     prefix: 'R$ ',
@@ -74,7 +74,7 @@ $.getJSON('https://raw.githubusercontent.com/FernandoGurgel/propina-no-more/mast
                     target.text('R$' + floored_number);
                 }
             },
-            2000,
+            5000,
             function () {
                 for(i=1; i<5; i++){                    
                     var valor2 = "#valor"+i;
