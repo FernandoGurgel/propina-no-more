@@ -63,6 +63,7 @@ $.getJSON('https://raw.githubusercontent.com/FernandoGurgel/propina-no-more/mast
                     var floored_number = Math.floor(now) / decimal_factor,
                         target = $(tween.elem);
 
+<<<<<<< HEAD
                     if (decimal_places > 0) {
                         // force decimal places even if they are 0
                         floored_number = floored_number.toFixed(decimal_places);
@@ -91,6 +92,23 @@ $.getJSON('https://raw.githubusercontent.com/FernandoGurgel/propina-no-more/mast
         $(nome).text(data[x].UG_SIGLA);
     }
  
+=======
+$.getJSON('https://raw.githubusercontent.com/FernandoGurgel/propina-no-more/master/Back-end/top4Orgaos_2018.json',function(data){
+	for(x=0; x < data.length; x++){
+        var valor = "#valor"+(x+1);
+		var nome = "#nome"+(x+1);
+		var num = data[x].VALOR_TOTAL_COMPRAS+" ";
+		var ponto = num.indexOf(".")+3;
+
+		$(valor).text(num.substring(0,ponto));
+		$(nome).text(data[x].UG_SIGLA);
+		$(valor).priceFormat({
+            prefix: 'R$ ',
+            centsSeparator: ',',
+            thousandsSeparator: '.'
+          });
+	}
+>>>>>>> 688fa66372eeaf0b8f343b588ad7aa5a6b45e58f
 })
 
 
