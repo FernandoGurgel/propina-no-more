@@ -3,140 +3,6 @@ biblioteca jquery-animateNumber
 http://aishek.github.io/jquery-animateNumber/
 14-10-2018
 */
-$.getJSON('https://raw.githubusercontent.com/FernandoGurgel/propina-no-more/master/Back-end/totalCompras2018.json', function (data) {
-    var decimal_places = 2;
-    var decimal_factor = decimal_places === 0 ? 1 : Math.pow(10, decimal_places);
-    var num = data[0].VALOR_TOTAL_COMPRAS + " ";
-    var ponto = num.indexOf(".") + 3;
-    $('#totalAno').text(num.substring(0, ponto));
-    $('#totalAno')
-        .animateNumber(
-            {
-                number: num * decimal_factor,
-
-                numberStep: function (now, tween) {
-                    var floored_number = Math.floor(now) / decimal_factor,
-                        target = $(tween.elem);
-
-                    if (decimal_places > 0) {
-                        // force decimal places even if they are 0
-                        floored_number = floored_number.toFixed(decimal_places);
-
-                        // replace '.' separator with ','
-                        floored_number = floored_number.toString().replace('.', ',');
-                    }
-
-                    target.text('R$' + floored_number);
-                }
-            },
-            5000,
-            function () {
-                $('#totalAno').priceFormat({
-                    prefix: 'R$ ',
-                    centsSeparator: ',',
-                    thousandsSeparator: '.'
-                });
-            }
-        );
-
-});
-  
-
-
-$.getJSON('https://raw.githubusercontent.com/FernandoGurgel/propina-no-more/master/Back-end/top4Orgaos_2018.json', function (data) {
-    for (x = 0; x < data.length; x++) {
-        var decimal_places = 2;
-        var decimal_factor = decimal_places === 0 ? 1 : Math.pow(10, decimal_places);
-        var num = data[x].VALOR_TOTAL_COMPRAS + " ";
-        var ponto = num.indexOf(".") + 3;
-
-        $(valor).text(num.substring(0, ponto));
-
-        var valor = "#valor" + (x + 1);
-        var nome = "#nome" + (x + 1);
-
-        $(valor).animateNumber(
-            {
-                number: num * decimal_factor,
-
-                numberStep: function (now, tween) {
-                    var floored_number = Math.floor(now) / decimal_factor,
-                        target = $(tween.elem);
-
-<<<<<<< HEAD
-                    if (decimal_places > 0) {
-                        // force decimal places even if they are 0
-                        floored_number = floored_number.toFixed(decimal_places);
-
-                        // replace '.' separator with ','
-                        floored_number = floored_number.toString().replace('.', ',');
-                    }
-
-                    target.text('R$' + floored_number);
-                }
-            },
-            5000,
-            function () {
-                for(i=1; i<5; i++){                    
-                    var valor2 = "#valor"+i;
-                    $(valor2).priceFormat({
-                        prefix: 'R$ ',
-                        centsSeparator: ',',
-                        thousandsSeparator: '.'
-                    });
-
-                }
-                
-            }
-        );
-        $(nome).text(data[x].UG_SIGLA);
-    }
- 
-=======
-$.getJSON('https://raw.githubusercontent.com/FernandoGurgel/propina-no-more/master/Back-end/top4Orgaos_2018.json',function(data){
-	for(x=0; x < data.length; x++){
-        var valor = "#valor"+(x+1);
-		var nome = "#nome"+(x+1);
-		var num = data[x].VALOR_TOTAL_COMPRAS+" ";
-		var ponto = num.indexOf(".")+3;
-
-		$(valor).text(num.substring(0,ponto));
-		$(nome).text(data[x].UG_SIGLA);
-		$(valor).priceFormat({
-            prefix: 'R$ ',
-            centsSeparator: ',',
-            thousandsSeparator: '.'
-          });
-	}
->>>>>>> 688fa66372eeaf0b8f343b588ad7aa5a6b45e58f
-})
-
-
-$(function () {
-    // Remove button click
-    $(document).on(
-        'click',
-        '[data-role="dynamic-fields"] > .form-inline [data-role="remove"]',
-        function (e) {
-            e.preventDefault();
-            $(this).closest('.form-inline').remove();
-        }
-    );
-    // Add button click
-    $(document).on(
-        'click',
-        '[data-role="dynamic-fields"] > .form-inline [data-role="add"]',
-        function (e) {
-            e.preventDefault();
-            var container = $(this).closest('[data-role="dynamic-fields"]');
-            new_field_group = container.children().filter('.form-inline:first-child').clone();
-            new_field_group.find('input').each(function () {
-                $(this).val('');
-            });
-            container.append(new_field_group);
-        }
-    );
-});
 
 // for(i=1; i<5; i++){
 //     var valor= '#valor'+i;
@@ -157,6 +23,123 @@ $(function () {
 
 
 $(document).ready(function () {
+
+    $.getJSON('https://raw.githubusercontent.com/FernandoGurgel/propina-no-more/master/Back-end/totalCompras2018.json', function (data) {
+        var decimal_places = 2;
+        var decimal_factor = decimal_places === 0 ? 1 : Math.pow(10, decimal_places);
+        var num = data[0].VALOR_TOTAL_COMPRAS + " ";
+        var ponto = num.indexOf(".") + 3;
+        $('#totalAno').text(num.substring(0, ponto));
+        $('#totalAno')
+            .animateNumber(
+                {
+                    number: num * decimal_factor,
+
+                    numberStep: function (now, tween) {
+                        var floored_number = Math.floor(now) / decimal_factor,
+                            target = $(tween.elem);
+
+                        if (decimal_places > 0) {
+                            // force decimal places even if they are 0
+                            floored_number = floored_number.toFixed(decimal_places);
+
+                            // replace '.' separator with ','
+                            floored_number = floored_number.toString().replace('.', ',');
+                        }
+
+                        target.text('R$' + floored_number);
+                    }
+                },
+                1000,
+                function () {
+                    $('#totalAno').priceFormat({
+                        prefix: 'R$ ',
+                        centsSeparator: ',',
+                        thousandsSeparator: '.'
+                    });
+                }
+            );
+
+    });
+
+
+
+    $.getJSON('https://raw.githubusercontent.com/FernandoGurgel/propina-no-more/master/Back-end/top4Orgaos_2018.json', function (data) {
+        for (x = 0; x < data.length; x++) {
+            var decimal_places = 2;
+            var decimal_factor = decimal_places === 0 ? 1 : Math.pow(10, decimal_places);
+            var num = data[x].VALOR_TOTAL_COMPRAS + " ";
+            var ponto = num.indexOf(".") + 3;
+
+            $(valor).text(num.substring(0, ponto));
+
+            var valor = "#valor" + (x + 1);
+            var nome = "#nome" + (x + 1);
+
+            $(valor).animateNumber(
+                {
+                    number: num * decimal_factor,
+
+                    numberStep: function (now, tween) {
+                        var floored_number = Math.floor(now) / decimal_factor,
+                            target = $(tween.elem);
+
+
+                        if (decimal_places > 0) {
+                            // force decimal places even if they are 0
+                            floored_number = floored_number.toFixed(decimal_places);
+
+                            // replace '.' separator with ','
+                            floored_number = floored_number.toString().replace('.', ',');
+                        }
+
+                        target.text('R$' + floored_number);
+                    }
+                },
+                1000,
+                function () {
+                    for (i = 1; i < 5; i++) {
+                        var valor2 = "#valor" + i;
+                        $(valor2).priceFormat({
+                            prefix: 'R$ ',
+                            centsSeparator: ',',
+                            thousandsSeparator: '.'
+                        });
+
+                    }
+
+                }
+            );
+            $(nome).text(data[x].UG_SIGLA);
+        }
+    })
+
+
+    $(function () {
+        // Remove button click
+        $(document).on(
+            'click',
+            '[data-role="dynamic-fields"] > .form-inline [data-role="remove"]',
+            function (e) {
+                e.preventDefault();
+                $(this).closest('.form-inline').remove();
+            }
+        );
+        // Add button click
+        $(document).on(
+            'click',
+            '[data-role="dynamic-fields"] > .form-inline [data-role="add"]',
+            function (e) {
+                e.preventDefault();
+                var container = $(this).closest('[data-role="dynamic-fields"]');
+                new_field_group = container.children().filter('.form-inline:first-child').clone();
+                new_field_group.find('input').each(function () {
+                    $(this).val('');
+                });
+                container.append(new_field_group);
+            }
+        );
+    });
 
     /*
     
