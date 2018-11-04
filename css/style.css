@@ -1210,3 +1210,7 @@ FILEDSET SITE DENUNCIA
        background-image: linear-gradient(to bottom, #FF0000, #B80E0F);
 
     }
+
+    #gastometro{
+      display: none;
+    }

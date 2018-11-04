@@ -86,7 +86,7 @@
           <li class="denuncieMenu"><a href="denuncia.html">Denuncie</a></li>
 
 
-          <li><a href="#gastrometro">Gastômetro</a></li>
+          <li><a href="#secaoGastometro">Gastômetro</a></li>
 
           <li><a href="#topsuspeitos">TOP Suspeitos</a></li>
           <li><a href="#sobre">Sobre</a></li>
@@ -107,7 +107,7 @@
 
   <!-- About -->
 
-  <section class="gastrometro" id="about">
+  <section class="secaoGastometro" id="about">
 
 
     <div class="container text-center">
@@ -115,37 +115,44 @@
         Gastômetro
       </h3>
       <h4>
-        Gastos em Compras Governamentais no Amazonas
+        Selecione um ano para acompanhar os gastos em compras governamentais no Amazonas
       </h4>
       <h3>
-        2018
-      </h3>
-      <h1 id="totalAno"></h1>
+        <select class="form-control" id="ano">
+          <option value="nenhum">Escolha um ano...</option>
+          <option value="2018">2018</option>
+          <option value="2017">2017</option>
+          <option value="2016">2016</option>
+        </select>
+      </h3>     
       <br>
-      <div class="row stats-row">
-        <div class="stats-col text-center col-md-3 col-sm-6">
-          <div class="circle">
-            <span class="stats-no" id="nome1"></span> <span id="valor1"></span>
+      <div id="gastometro">
+        <div class="row stats-row">
+          <div class="stats-col text-center col-md-3 col-sm-6">
+            <div class="circle">
+              <span class="stats-no" id="nome1"></span> <span id="valor1"></span>
+            </div>
           </div>
-        </div>
 
-        <div class="stats-col text-center col-md-3 col-sm-6">
-          <div class="circle">
-            <span id="nome2" class="stats-no"></span> <span id="valor2"></span>
+          <div class="stats-col text-center col-md-3 col-sm-6">
+            <div class="circle">
+              <span id="nome2" class="stats-no"></span> <span id="valor2"></span>
+            </div>
           </div>
-        </div>
 
-        <div class="stats-col text-center col-md-3 col-sm-6">
-          <div class="circle">
-            <span id="nome3" class="stats-no"></span> <span id="valor3"></span>
+          <div class="stats-col text-center col-md-3 col-sm-6">
+            <div class="circle">
+              <span id="nome3" class="stats-no"></span> <span id="valor3"></span>
+            </div>
           </div>
-        </div>
 
-        <div class="stats-col text-center col-md-3 col-sm-6">
-          <div class="circle">
-            <span id="nome4" class="stats-no"></span> <span id="valor4"></span>
+          <div class="stats-col text-center col-md-3 col-sm-6">
+            <div class="circle">
+              <span id="nome4" class="stats-no"></span> <span id="valor4"></span>
+            </div>
           </div>
         </div>
+        <h1 id="totalAno"></h1>
       </div>
     </div>
   </section>

@@ -4,37 +4,39 @@ http://aishek.github.io/jquery-animateNumber/
 14-10-2018
 */
 
-// for(i=1; i<5; i++){
-//     var valor= '#valor'+i;
-//     $(valor).each(function () {
-//         $(this).prop('Counter',0).animate({
-//             Counter: $(this).text()
-//         }, {
-//             duration: 4000,
-//             easing: 'swing',
-//             step: function (now) {
-//                 $(this).text(Math.ceil(now));
-//             }
-//         });
-//     }); 
-
-// }
-
-
-
-$(document).ready(function () {
-
-    $.getJSON('https://raw.githubusercontent.com/FernandoGurgel/propina-no-more/master/Back-end/totalCompras2018.json', function (data) {
-        var decimal_places = 2;
-        var decimal_factor = decimal_places === 0 ? 1 : Math.pow(10, decimal_places);
-        var num = data[0].VALOR_TOTAL_COMPRAS + " ";
-        var ponto = num.indexOf(".") + 3;
-        $('#totalAno').text(num.substring(0, ponto));
-        $('#totalAno')
-            .animateNumber(
-                {
+$(document).ready(function () {    
+    //verifica os dados do gastômetro do ano selecionado
+    $('#ano').change(function(){
+        var ano = $('#ano').val();
+        switch(ano){
+            case 2018:
+                var anoJson = 2018;
+                break;
+            case 2017:
+                var anoJson = 2017;
+                break;
+            case 2016:
+                var anoJson = 2016;
+                break;
+        }
+        $("#gastometro").show();
+        var link = 'https://raw.githubusercontent.com/propina-no-more/code/master/Back-end/gastometro'+ano+'.json';
+        var valorTotal = 0;
+        $.getJSON(link, function (data) {            
+            for (x = 0; x < 4; x++) {                
+                valorTotal = valorTotal + data[x].Preco_Maximo;
+                var decimal_places = 2;
+                var decimal_factor = decimal_places === 0 ? 1 : Math.pow(10, decimal_places);
+                var num = data[x].Preco_Maximo + " ";
+                var ponto = num.indexOf(".") + 3;
+                
+                $(valor).text(num.substring(0, ponto));
+    
+                var valor = "#valor" + (x + 1);
+                var nome = "#nome" + (x + 1);
+    
+                $(valor).animateNumber({
                     number: num * decimal_factor,
-
                     numberStep: function (now, tween) {
                         var floored_number = Math.floor(now) / decimal_factor,
                             target = $(tween.elem);
@@ -46,9 +48,48 @@ $(document).ready(function () {
                             // replace '.' separator with ','
                             floored_number = floored_number.toString().replace('.', ',');
                         }
-
                         target.text('R$' + floored_number);
                     }
+                },  1000,
+                    function () {
+                        for (i = 1; i < 5; i++) {
+                            var valor2 = "#valor" + i;
+                            $(valor2).priceFormat({
+                                prefix: 'R$ ',
+                                centsSeparator: ',',
+                                thousandsSeparator: '.'
+                            });
+    
+                        }
+    
+                    }
+                );
+                $(nome).text(data[x].UG_Sigla);
+                }  
+                var decimal_places = 2;
+                var decimal_factor = decimal_places === 0 ? 1 : Math.pow(10, decimal_places);
+                var num = valorTotal + " ";
+                var ponto = num.indexOf(".") + 3;
+                $('#totalAno').text(num.substring(0, ponto));
+                $('#totalAno')
+                    .animateNumber(
+                        {
+                            number: num * decimal_factor,
+
+                            numberStep: function (now, tween) {
+                                var floored_number = Math.floor(now) / decimal_factor,
+                                    target = $(tween.elem);
+
+                                if (decimal_places > 0) {
+                                    // force decimal places even if they are 0
+                                    floored_number = floored_number.toFixed(decimal_places);
+
+                                    // replace '.' separator with ','
+                                    floored_number = floored_number.toString().replace('.', ',');
+                                }
+
+                                target.text('R$' + floored_number);
+                            }
                 },
                 1000,
                 function () {
@@ -58,63 +99,10 @@ $(document).ready(function () {
                         thousandsSeparator: '.'
                     });
                 }
-            );
-
+            );        
+        });     
     });
-
-
-
-    $.getJSON('https://raw.githubusercontent.com/FernandoGurgel/propina-no-more/master/Back-end/top4Orgaos_2018.json', function (data) {
-        for (x = 0; x < data.length; x++) {
-            var decimal_places = 2;
-            var decimal_factor = decimal_places === 0 ? 1 : Math.pow(10, decimal_places);
-            var num = data[x].VALOR_TOTAL_COMPRAS + " ";
-            var ponto = num.indexOf(".") + 3;
-
-            $(valor).text(num.substring(0, ponto));
-
-            var valor = "#valor" + (x + 1);
-            var nome = "#nome" + (x + 1);
-
-            $(valor).animateNumber(
-                {
-                    number: num * decimal_factor,
-
-                    numberStep: function (now, tween) {
-                        var floored_number = Math.floor(now) / decimal_factor,
-                            target = $(tween.elem);
-
-
-                        if (decimal_places > 0) {
-                            // force decimal places even if they are 0
-                            floored_number = floored_number.toFixed(decimal_places);
-
-                            // replace '.' separator with ','
-                            floored_number = floored_number.toString().replace('.', ',');
-                        }
-
-                        target.text('R$' + floored_number);
-                    }
-                },
-                1000,
-                function () {
-                    for (i = 1; i < 5; i++) {
-                        var valor2 = "#valor" + i;
-                        $(valor2).priceFormat({
-                            prefix: 'R$ ',
-                            centsSeparator: ',',
-                            thousandsSeparator: '.'
-                        });
-
-                    }
-
-                }
-            );
-            $(nome).text(data[x].UG_SIGLA);
-        }
-    })
-
-
+    
     $(function () {
         // Remove button click
         $(document).on(
