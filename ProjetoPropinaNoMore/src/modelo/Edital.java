@@ -5,22 +5,23 @@
  */
 package modelo;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Orgao {
+public class Edital {
     @Id
     @GeneratedValue
     private long id;
-    private String sigla;
-    private String nome;
-
-    public Orgao(String sigla, String nome) {
-        this.sigla = sigla;
-        this.nome = nome;
-    }
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Orgao orgao;
+    private String referencia;
+    private String objetoLicitado;
+    private String ganhador;
+    private String status;
 
     
     
