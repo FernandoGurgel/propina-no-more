@@ -237,7 +237,8 @@
 
                 <div class="form-group col-md-4">
                   <label for="ano">Ano</label>
-                  <select class="form-control" id="ano">
+                  <select class="form-control" id="anoEdital">
+                    <option value="nenhum">Escolha um ano...</option>
                     <option value="2018">2018</option>
                     <option value="2017">2017</option>
                     <option value="2016">2016</option>
@@ -246,13 +247,14 @@
                 <div class="form-group col-md-8">
                   <label for="exampleFormControlSelect1">Orgão</label>
                   <select class="form-control" id="cboOrgao">
-                    <option></option>
+                    <option value="nenhum">Escolha um órgao...</option>
                   </select>
                 </div>
+                
               </div>
               <div class="form-group">
 
-                <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                <table id="tabelaEdital" style="display:none;" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                   <thead>
                     <tr>
                       <th class="th-sm">Edital de Referencia
