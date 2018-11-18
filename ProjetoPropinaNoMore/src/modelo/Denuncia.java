@@ -17,8 +17,10 @@ public class Denuncia {
     private long id;
     private int ano;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "orgao_id")
     private Orgao orgao;
+    
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Edital edital;
     
     private boolean sigilo;
     private String cpf;
@@ -26,14 +28,14 @@ public class Denuncia {
     private String email;
     private String telefone;
     
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private Collection<Denunciado> denunciado;
     
     private String oque;
     private String quando;
     private String onde; 
     
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private Collection<Prova> prova;
     
     

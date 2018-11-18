@@ -12,12 +12,20 @@ public class ConnectionFactory {
             if(entityManagerFactory==null|| !entityManagerFactory.isOpen()){
                 System.out.println("Criando EntityManager....");
                 entityManagerFactory = 
-                Persistence.createEntityManagerFactory("ProjetoPropinaNoMorePU");
+                Persistence.createEntityManagerFactory("ProjetoPropinaNoMoreCreate");
             }
             return entityManagerFactory.createEntityManager();
 	}
         
-      
+        public static EntityManager getEntityManagerUpdate(){
+            if(entityManagerFactory==null|| !entityManagerFactory.isOpen()){
+                System.out.println("Criando EntityManager....");
+                entityManagerFactory = 
+                Persistence.createEntityManagerFactory("ProjetoPropinaNoMoreUpdate");
+            }
+            return entityManagerFactory.createEntityManager();
+	}
+        
         public static void closeEntityFactory(){
             entityManagerFactory.close();
         }

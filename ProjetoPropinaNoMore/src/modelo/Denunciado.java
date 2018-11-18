@@ -13,6 +13,14 @@ public class Denunciado {
     private String nome;
     private String cargo;
     private String infoAdicional;
+
+    public Denunciado(String nome, String cargo, String infoAdicional) {
+        this.nome = nome;
+        this.cargo = cargo;
+        this.infoAdicional = infoAdicional;
+    }
+    
+    
    
     
 }
