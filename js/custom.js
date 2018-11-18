@@ -7,20 +7,9 @@ http://aishek.github.io/jquery-animateNumber/
 $(document).ready(function () {    
     //verifica os dados do gastômetro do ano selecionado
     $('#ano').change(function(){
-        var ano = $('#ano').val();
-        switch(ano){
-            case 2018:
-                var anoJson = 2018;
-                break;
-            case 2017:
-                var anoJson = 2017;
-                break;
-            case 2016:
-                var anoJson = 2016;
-                break;
-        }
+        var ano = $('#ano').val();       
         $("#gastometro").show();
-        var link = 'https://raw.githubusercontent.com/propina-no-more/code/master/Back-end/gastometro'+ano+'.json';
+        var link = '/Back-end/json_gastometro/gastometro'+ano+'.json';
         var valorTotal = 0;
         $.getJSON(link, function (data) {            
             for (x = 0; x < 4; x++) {                

@@ -1,43 +1,57 @@
-$(document).ready(function () {
-	var cont = 0;
-	$.getJSON("https://raw.githubusercontent.com/FernandoGurgel/propina-no-more/master/Back-end/valor_edital_2018.json", function (data) {
-		$('#listaCompras > tr').empty();
-		for (x = 0; x < data.length; x++) {
-			if ((ano == data[x].ano) && (sigla == data[x].sigla) && (data[x].situacao != 'Anulado / Revogado') && (data[x].situacao != 'Fracassada') && (data[x].situacao != 'Suspensa')) {
-				var num = data[x].valor + " ";
-				var ponto = num.indexOf(".") + 3;
-				var valor = (num.substring(0, ponto));
 
-				$('#listaCompras').append('<tr><td>' + data[x].edital + '</td><td>' + data[x].objeto + '</td><td>' + data[x].empresa + '</td><td class="valorTabela">' + valor + '</td><td>' + data[x].situacao + '</td></tr>');
-				cont++;
-			}
+$(document).ready(function () {
+	popularOrgao();	
+	
+	$("#cboOrgao").change(function(){
+		var ano = $("#anoEdital").val();
+		var orgao = $("#cboOrgao").val();
+		if(ano!=null && orgao !=null){
+			popularEditais(ano, orgao);
 		}
-	});
-	for (i = 0; i < sigla.length; i++) {
-		$("#cboOrgao").append("<option value='" + sigla[i] + "'>[" + sigla[i] + "] - " + descricao[i] + "</option>")
-	}
+	})
+
+	$("#anoEdital").change(function(){
+		$("#cboOrgao").val("nenhum");
+		$('#listaCompras > tr').empty();
+	})
+	
+});
+
+function popularOrgao(){
 	var sigla = [];
 	var descricao = [];
-	$.getJSON("https://raw.githubusercontent.com/FernandoGurgel/propina-no-more/master/Back-end/json/orgao_nome.json", function (data) {
-		for (x = 0; x < data.length; x++) {
-			sigla.push(data[x].sigla);
-			descricao.push(data[x].nome);
+	$.getJSON("Back-end/json/orgaos.json", function (orgaos) {
+		for (x = 0; x < orgaos.length; x++) {
+			sigla.push(orgaos[x].sigla);
+			descricao.push(orgaos[x].nome);
+			$("#cboOrgao").append("<option value='" + sigla[x] + "'>[" + sigla[x] + "] - " + descricao[x] + "</option>")			
 		}
 	});
+}
 
-	$('#cboOrgao').click(function () {
-		// alert($('#cboOrgao').val());
-		var sigla = $('#cboOrgao').val();
-		var descricao = [];
-		var ano = $('#ano').val();
-
-		if (cont == 0) {
-			$('#listaCompras').append('<tr><td class="text-center" colspan=5> Não tem registro para este orgão </td><tr>');
+function popularEditais(ano, sigla){	
+	
+	$("#tabelaEdital").show();
+	var cont = 0;
+	$.getJSON("Back-end/json_edital/valor_edital_"+ano+".json", function (dadosOrgaos) {
+		$('#listaCompras > tr').empty();
+		for (x = 0; x < dadosOrgaos.length; x++) {
+			if ((sigla == dadosOrgaos[x].sigla) && (dadosOrgaos[x].situacao != 'Anulado / Revogado') && (dadosOrgaos[x].situacao != 'Fracassada') && (dadosOrgaos[x].situacao != 'Suspensa')) {
+				var num = dadosOrgaos[x].valor + " ";
+				var ponto = num.indexOf(".") + 3;
+				var valor = (num.substring(0, ponto));
+				$('#listaCompras').append('<tr><td>' + dadosOrgaos[x].edital + '</td><td>' + dadosOrgaos[x].objeto + '</td><td>' + dadosOrgaos[x].empresa + '</td><td class="valorTabela">' + valor + '</td><td>' + dadosOrgaos[x].situacao + '</td></tr>');
+				cont++;
+			}
 		}
 		$('.valorTabela').priceFormat({
 			prefix: 'R$ ',
 			centsSeparator: ',',
 			thousandsSeparator: '.'
 		});
-	})
-});
+	});	
+	if (cont == 0) {
+		$('#listaCompras').append('<tr><td class="text-center" colspan=5> Não há registros para o órgão selecionado</td><tr>');
+	}
+	
+}
