@@ -1,17 +1,20 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[ ]:
 
 
 import pandas as pd
 import numpy as np
 import json 
+import os
+
 ## Importação dos dados
+path = os.getcwd()
 ano = 2016
 for i in range(3):
     print("Importando dados de "+str(ano))
-    arquivo = 'bases/export_transparencia_'+str(ano)+'.csv'
+    arquivo = path+'/bases/export_transparencia_'+str(ano)+'.csv'
     print("Link de extração: "+arquivo)
     data = arquivo
     dataset = pd.read_csv(data, sep=";")
@@ -33,18 +36,12 @@ for i in range(3):
     for i in range(5):
         top4.append(listaDados[i])
     top4
-
-    jsonFile = 'json_gastometro/gastometro'+str(ano)+'.json'
+    
+    jsonFile = path+'/json_gastometro/gastometro'+str(ano)+'.json'
     with open(jsonFile, 'w', encoding='utf-8') as file:
         json.dump(top4, file,  ensure_ascii=False)
 
     print("Dados de "+str(ano)+" extraídos com sucesso! Json criado: "+jsonFile+"\n")
     ano = ano + 1
-print("Script finalizado")
-
-
-# In[ ]:
-
-
-
+print("Gastometro.py terminado")
 

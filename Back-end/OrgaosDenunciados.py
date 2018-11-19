@@ -1,15 +1,19 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[ ]:
 
 
 import pandas as pd
 import numpy as np
+import os
+import json 
+
+path = os.getcwd()
 ano = 2016
 for i in range(3):
     print("Iniciando extração do ano "+str(ano));
-    data = 'bases/export_transparencia_'+str(ano)+'.csv'
+    data = path+'/bases/export_transparencia_'+str(ano)+'.csv'
     dataset = pd.read_csv(data, sep=";")
     dataset['Preco_Maximo'] = dataset['Preco_Maximo'].apply(lambda x: 0.0 if(x=='-') else float(x))
 
@@ -23,14 +27,14 @@ for i in range(3):
     dados = []
     for i in t.keys():
         dados.append({'ano': str(ano),'sigla':i[0], 'edital':i[1], 'objeto':i[2], 'empresa': i[3], 'situacao':i[4], 'valor':i[5]})
-  
-    import json 
+           
     print("Gravando os dados em um arquivo JSON")
-    with open('json_edital/valor_edital_'+str(ano)+'.json', 'w', encoding='utf-8') as file:
+    jsonFile = path+'/json_edital/valor_edital_'+str(ano)+'.json'
+    with open(jsonFile, 'w', encoding='utf-8') as file:
         json.dump(dados, file,  ensure_ascii=False)
 
     print("valor_edital_"+str(ano)+".json gerado")
     ano = ano + 1
-print("Terminado")  
+print("OrgaosDenunciados.py terminado")  
     
 

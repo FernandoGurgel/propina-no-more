@@ -1,13 +1,18 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
+# In[ ]:
 
 
 import pandas as pd
 import numpy as np
+import json
+import os
+
+path = os.getcwd()
 print("1 - Iniciando extração")
-data = 'bases/export_transparencia_2018.csv'
+data = path+'/bases/export_transparencia_2018.csv'
+print(data)
 dataset = pd.read_csv(data, sep=";")
 
 unidades = dataset['UG_Sigla']
@@ -21,16 +26,9 @@ for i in t.keys():
 #     print(i[1])
 
 print("3 - Gravando arquivo JSON")
-import json
-arquivo = 'json/orgaos.json'
+arquivo = path+'/json/orgaos.json'
 with open(arquivo, 'w', encoding='utf-8') as file:
     json.dump(dados, file,  ensure_ascii=False)  
     
 print("Arquivo "+arquivo+" gerado com sucesso!")
-
-
-# In[ ]:
-
-
-
 
