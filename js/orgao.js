@@ -7,7 +7,10 @@ $(document).ready(function () {
 		var orgao = $("#cboOrgao").val();
 		if(ano!=null && orgao !=null){
 			$("#tabelaEdital").show();
-			!popularEditais(ano, orgao);
+			if(!popularEditais(ano, orgao)){
+				$('#listaCompras').append('<tr><td class="text-center" colspan=5> Não há registros para o órgão selecionado</td><tr>');
+	 
+			};
 		}
 	})
 
@@ -31,11 +34,13 @@ function popularOrgao(){
 	
 }
 
-function popularEditais(ano, sigla){		
+function popularEditais(ano, sigla){	
 	$("#circle").show();
 	$('#listaCompras > tr').empty();
-	var count = 0;
-	$.getJSON("Back-end/json_edital/valor_edital_"+ano+".json", function (dadosOrgaos) {	
+	var cont = 0;
+	var carregamento = false;
+	$.getJSON("Back-end/json_edital/valor_edital_"+ano+".json", function (dadosOrgaos) {
+		
 		for (x = 0; x < dadosOrgaos.length; x++) {	
 			if ((sigla == dadosOrgaos[x].sigla) && (dadosOrgaos[x].situacao != 'Anulado / Revogado') && (dadosOrgaos[x].situacao != 'Fracassada') && (dadosOrgaos[x].situacao != 'Suspensa')) {
 				var num = dadosOrgaos[x].valor + " ";
@@ -50,16 +55,11 @@ function popularEditais(ano, sigla){
 			centsSeparator: ',',
 			thousandsSeparator: '.'
 		});
-		$("#circle").hide();
-		if(count == 0){
-			$('#listaCompras').append('<tr><td class="text-center" colspan=5> Não há registros para o órgão selecionado</td><tr>');
-		}
+		carregamento = true;
 	})  
-	  .fail(function() {
-		  alert("Não foi possível acessar os dados!");
-		
-	  })
-	 ;	
+
+	$("#circle").hide();
+	return carregamento;
 	
 	
 }
