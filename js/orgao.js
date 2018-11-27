@@ -7,10 +7,7 @@ $(document).ready(function () {
 		var orgao = $("#cboOrgao").val();
 		if(ano!=null && orgao !=null){
 			$("#tabelaEdital").show();
-			if(!popularEditais(ano, orgao)){
-				$('#listaCompras').append('<tr><td class="text-center" colspan=5> Não há registros para o órgão selecionado</td><tr>');
-	 
-			};
+			popularEditais(ano, orgao);
 		}
 	})
 
@@ -35,10 +32,9 @@ function popularOrgao(){
 }
 
 function popularEditais(ano, sigla){	
-	$("#circle").show();
 	$('#listaCompras > tr').empty();
+	$("#circle").show();
 	var cont = 0;
-	var carregamento = false;
 	$.getJSON("Back-end/json_edital/valor_edital_"+ano+".json", function (dadosOrgaos) {
 		
 		for (x = 0; x < dadosOrgaos.length; x++) {	
@@ -55,11 +51,11 @@ function popularEditais(ano, sigla){
 			centsSeparator: ',',
 			thousandsSeparator: '.'
 		});
-		carregamento = true;
+		if(cont == 0){
+			$('#listaCompras').append('<tr><td class="text-center" colspan=5> Não há registros para o órgão selecionado</td><tr>');	 
+		}
 	})  
 
-	$("#circle").hide();
-	return carregamento;
-	
+	$("#circle").hide();	
 	
 }
