@@ -2,8 +2,32 @@
     Propina No More !!
     Editado por Sergio Roberto
 */
+
+.sselect {
+  display:;
+  border: none;
+  border: 0px;
+  outline: 0px;
+  background-color: transparent;
+  color: white;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+  appearance:none;
+  text-align-last:center;
+}
+
+
+
+.sbotao{
+    border: none;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: "Raleway", Helvetica, Arial, sans-serif;
+}
+
+.select-hide {
+  display: none;
 }
 
 p {
