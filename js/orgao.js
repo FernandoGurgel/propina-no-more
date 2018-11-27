@@ -54,8 +54,9 @@ function popularEditais(ano, sigla){
 		if(cont == 0){
 			$('#listaCompras').append('<tr><td class="text-center" colspan=5> Não há registros para o órgão selecionado</td><tr>');	 
 		}
+		$("#circle").hide();	
 	})  
 
-	$("#circle").hide();	
+	
 	
 }
