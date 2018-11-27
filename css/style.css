@@ -90,6 +90,9 @@ section {
 
 .section35{
   padding: 35px 0;
+  position: relative;
+  /*background-image: url(../img/cover.jpg);
+  background-size: cover;*/
 }
 
 .card {
@@ -176,7 +179,7 @@ a:hover {
   Header Styling
 ================================================== */
 #header {
-  background-image: linear-gradient(to bottom, #199EB8, #199EB8);
+  background-image: linear-gradient(to bottom, #000000, #001232, #001232, #001232);
   height: 70px;
 }
 
@@ -488,7 +491,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   font-family: "Raleway", Helvetica, Arial, sans-serif;
   font-weight: 500;
   color: #666;
-  border: 6px solid #199EB8;
+  border: 6px solid #115080;
   border-radius: 50%;
   padding: 80px 16px 0 25px;
   position: relative;
@@ -503,7 +506,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   right: -15px;
   font-family: "Raleway", Helvetica, Arial, sans-serif;
   font-size: 18px;
-  background-color: #E04F00;
+  background-image: linear-gradient(to bottom, #FF0000,  #B80E0F);
   position: absolute;
   border-radius: 50%;
   font-weight: 700;
@@ -581,7 +584,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   Call-to-action Styling
   ================================================== */
 .cta {
-  background-color: #199EB8;
+  background-color: #115080;
   padding: 25px 0;
 }
 
@@ -919,13 +922,13 @@ Lista
     display: inline-block;
     width: 100%;
     color: rgb(255, 255, 255);
-    background-color: rgb(197, 44, 102);
+    background-image: linear-gradient(to bottom, #001232, #001232, #000000);
     padding: 5px;
     text-align: center;
     text-transform: uppercase;
   }
   .event-list > li:nth-child(even) > time {
-    background-color: rgb(165, 82, 167);
+   background-image: linear-gradient(to bottom, #001232, #001232, #000000);
   }
   .event-list > li > time > span {
     display: none;
@@ -935,12 +938,13 @@ Lista
     font-size: 56pt;
     font-weight: 100;
     line-height: 1;
+    color: white;
   }
   .event-list > li time > .month {
     display: block;
     font-size: 24pt;
     font-weight: 900;
-    color: black;
+    color: white;
     line-height: 1;
   }
   .event-list > li > img {

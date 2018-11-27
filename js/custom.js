@@ -5,8 +5,28 @@ http://aishek.github.io/jquery-animateNumber/
 */
 
 $(document).ready(function () {    
-    //verifica os dados do gastômetro do ano selecionado
-    $('#ano').change(function(){
+
+    rodarGastometro();
+
+
+    $("#next").click(function() {
+        var nextElement = $('#ano > option:selected').next('option');
+        if (nextElement.length > 0) {
+        $('#ano > option:selected').removeAttr('selected').next('option').attr('selected', 'selected');
+        rodarGastometro();
+        }
+    });
+
+    $("#prev").click(function() {
+        var nextElement = $('#ano > option:selected').prev('option');
+        if (nextElement.length > 0) {
+        $('#ano > option:selected').removeAttr('selected').prev('option').attr('selected', 'selected');
+        rodarGastometro();
+        }
+    });
+    
+
+    function rodarGastometro() {
         var ano = $('#ano').val();       
         $("#gastometro").show();
         var link = '/Back-end/json_gastometro/gastometro'+ano+'.json';
@@ -89,34 +109,8 @@ $(document).ready(function () {
                     });
                 }
             );        
-        });     
-    });
-    
-    $(function () {
-        // Remove button click
-        $(document).on(
-            'click',
-            '[data-role="dynamic-fields"] > .form-inline [data-role="remove"]',
-            function (e) {
-                e.preventDefault();
-                $(this).closest('.form-inline').remove();
-            }
-        );
-        // Add button click
-        $(document).on(
-            'click',
-            '[data-role="dynamic-fields"] > .form-inline [data-role="add"]',
-            function (e) {
-                e.preventDefault();
-                var container = $(this).closest('[data-role="dynamic-fields"]');
-                new_field_group = container.children().filter('.form-inline:first-child').clone();
-                new_field_group.find('input').each(function () {
-                    $(this).val('');
-                });
-                container.append(new_field_group);
-            }
-        );
-    });
+        });
+    }
 
     /*
     
@@ -326,6 +320,14 @@ $(document).ready(function () {
         return false;
     });
 
+
+
+
+
+
+
+
+
 });
 
 /*
@@ -420,3 +422,5 @@ function handleFileUpload(files, obj) {
 
     }
 }
+
+
