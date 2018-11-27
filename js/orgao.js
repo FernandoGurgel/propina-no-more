@@ -13,6 +13,7 @@ $(document).ready(function () {
 
 	$("#anoEdital").change(function(){
 		$("#cboOrgao").val("nenhum");
+		$("#cboOrgao").prop('disabled', false);
 		$('#listaCompras > tr').empty();
 	})
 	
