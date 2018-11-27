@@ -32,10 +32,9 @@ function popularOrgao(){
 }
 
 function popularEditais(ano, sigla){		
-	$.getJSON("Back-end/json_edital/valor_edital_"+ano+".json", function () {
-		$("#circle").show();
-	})  .done(function(dadosOrgaos) {
-		$('#listaCompras > tr').empty();		
+	$("#circle").show();
+	$('#listaCompras > tr').empty();
+	$.getJSON("Back-end/json_edital/valor_edital_"+ano+".json", function (dadosOrgaos) {	
 		for (x = 0; x < dadosOrgaos.length; x++) {	
 			if ((sigla == dadosOrgaos[x].sigla) && (dadosOrgaos[x].situacao != 'Anulado / Revogado') && (dadosOrgaos[x].situacao != 'Fracassada') && (dadosOrgaos[x].situacao != 'Suspensa')) {
 				var num = dadosOrgaos[x].valor + " ";
@@ -50,7 +49,7 @@ function popularEditais(ano, sigla){
 			thousandsSeparator: '.'
 		});
 		$("#circle").hide();
-	  })
+	})  
 	  .fail(function() {
 		$('#listaCompras').append('<tr><td class="text-center" colspan=5> Não há registros para o órgão selecionado</td><tr>');
 	  })
