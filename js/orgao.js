@@ -20,7 +20,6 @@ $(document).ready(function () {
 });
 
 function popularOrgao(){
-	$("#circle").show();
 	var sigla = [];
 	var descricao = [];
 	$.getJSON("Back-end/json/orgaos.json", function (orgaos) {
@@ -30,11 +29,11 @@ function popularOrgao(){
 			$("#cboOrgao").append("<option value='" + sigla[x] + "'>[" + sigla[x] + "] - " + descricao[x] + "</option>")			
 		}
 	});
-	$("#circle").hide();
+	
 }
 
 function popularEditais(ano, sigla){	
-	
+	$("#circle").show();
 	$("#tabelaEdital").show();
 	var cont = 0;
 	var carregamento = false;
@@ -56,7 +55,7 @@ function popularEditais(ano, sigla){
 		});
 		carregamento = true;
 	});	
-
+	$("#circle").hide();
 	return carregamento;
 	
 	
