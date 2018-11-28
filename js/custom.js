@@ -24,7 +24,11 @@ $(document).ready(function () {
         rodarGastometro();
         }
     });
-    
+
+    $('#ano').change(function(){
+        rodarGastometro();
+    });
+
 
     function rodarGastometro() {
         var ano = $('#ano').val();       
