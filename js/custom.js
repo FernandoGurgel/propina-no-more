@@ -6,11 +6,10 @@ http://aishek.github.io/jquery-animateNumber/
 
 $(document).ready(function () {    
 
-    rodarGastometro();
 
-    var nextElement;
+    //var nextElement = ;
 
-    $("#next").click(function() {
+    /*$("#next").click(function() {
         //var nextElement = $('#ano > option:selected').next('option');
         nextElement = $('#ano > option:selected').next('option');
         if (nextElement.length > 0) {
@@ -25,7 +24,32 @@ $(document).ready(function () {
         $('#ano > option:selected').removeAttr('selected').prev('option').attr('selected', 'selected');
         rodarGastometro();
         }
+    }); */
+
+    var guardarano = 2018;
+    rodarGastometro();
+
+    function alterarLabel(){
+        document.getElementById('ano').innerHTML = guardarano;
+    }
+
+    $("#next").click(function() {
+        if(guardarano < 2018){
+            guardarano = guardarano + 1;
+            alterarLabel();
+            rodarGastometro(); 
+        }
     });
+
+    $("#prev").click(function() {
+        if(guardarano > 2016){
+            guardarano = guardarano - 1;
+            alterarLabel();
+            rodarGastometro(); 
+        }
+    }); 
+
+
 
     $('#ano').change(function(){
         rodarGastometro();
@@ -33,7 +57,8 @@ $(document).ready(function () {
 
 
     function rodarGastometro() {
-        var ano = $('#ano').val();       
+        //var ano = $('#ano').val(); 
+        var ano = guardarano;      
         $("#gastometro").show();
         var link = '/Back-end/json_gastometro/gastometro'+ano+'.json';
         var valorTotal = 0;
