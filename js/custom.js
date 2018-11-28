@@ -8,9 +8,11 @@ $(document).ready(function () {
 
     rodarGastometro();
 
+    var nextElement;
 
     $("#next").click(function() {
-        var nextElement = $('#ano > option:selected').next('option');
+        //var nextElement = $('#ano > option:selected').next('option');
+        nextElement = $('#ano > option:selected').next('option');
         if (nextElement.length > 0) {
         $('#ano > option:selected').removeAttr('selected').next('option').attr('selected', 'selected');
         rodarGastometro();
@@ -18,7 +20,7 @@ $(document).ready(function () {
     });
 
     $("#prev").click(function() {
-        var nextElement = $('#ano > option:selected').prev('option');
+        nextElement = $('#ano > option:selected').prev('option');
         if (nextElement.length > 0) {
         $('#ano > option:selected').removeAttr('selected').prev('option').attr('selected', 'selected');
         rodarGastometro();
