@@ -961,7 +961,7 @@ Lista
     display: block;
     font-size: 56pt;
     font-weight: 100;
-    line-height: 1;
+    /*line-height: 1;*/
     color: white;
   }
   .event-list > li time > .month {
