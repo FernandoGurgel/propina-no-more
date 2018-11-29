@@ -36,6 +36,7 @@
 
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet">
+  <link href="css/upload.css" rel="stylesheet">
 
   <!-- MDBootstrap Datatables  -->
 
@@ -231,7 +232,7 @@
               <div class="form-row">
 
                 <div class="form-group col-md-4">
-                  <label for="ano">Ano</label>
+                  <label for="ano">Ano*</label>
                   <select class="form-control" id="anoEdital">
                     <option value="nenhum">Escolha um ano...</option>
                     <option value="2018">2018</option>
@@ -240,7 +241,7 @@
                   </select>
                 </div>
                 <div class="form-group col-md-8">
-                  <label for="exampleFormControlSelect1">Orgão</label>
+                  <label for="exampleFormControlSelect1">Orgão*</label>
                   <select class="form-control" id="cboOrgao">
                     <option value="nenhum">Escolha um órgao...</option>
                   </select>
@@ -284,20 +285,21 @@
                 <div class="form-inline">
                   <div class="form-group">
                     <label class="sr-only" for="field-name">Nome</label>
-                    <input type="text" class="form-control" id="field-name" placeholder="Nome">
-                  </div>
+                    <input type="text" class="form-control" id="field-name" placeholder="Nome">&nbsp;
+                    <label class="sr-only" for="field-cargo">Cargo</label>
+                    <input type="text" class="form-control" id="field-cargo" placeholder="Cargo">&nbsp;
+                    <label class="sr-only" for="field-infoadd">Informações Adicionais</label>
+                    <input type="text" class="form-control" id="field-infoadd" placeholder="Informações Adicionais">&nbsp;
 
-                  <button class="btn btn-danger" data-role="remove">
-
-                    <span class="glyphicon glyphicon-remove"> -</span>
-                  </button>
-                  <span class="input-group-btn">
-
-                    <button class="btn btn-success btn-add" data-role="add">
-                      <span class="glyphicon glyphicon-plus"> +</span>
+                    <button class="btn btn-sm btn-danger" data-role="remove">
+                      <i class="fa fa-minus"></i>
                     </button>
-                  </span>
-
+                    <span class="input-group-btn">
+                    <button class="btn btn-sm btn-info btn-add" data-role="add">
+                      <i class="fa fa-plus"></i>
+                    </button>
+                    </span>
+                  </div>
                 </div> <!-- /div.form-inline -->
               </div> <!-- /div[data-role="dynamic-fields"] -->
             </fieldset>
@@ -340,12 +342,12 @@
 
               <legend>Dados da Denúncia</legend> </br>
               <div class="form-group">
-                <label for="exampleFormControlTextarea1">O que aconteceu?</label>
+                <label for="exampleFormControlTextarea1">O que aconteceu?*</label>
                 <textarea class="form-control"></textarea>
               </div>
 
               <div class="form-group">
-                <label for=" exampleFormControlTextarea1">Quando aconteceu?</label>
+                <label for=" exampleFormControlTextarea1">Quando aconteceu?*</label>
                 <input class="form-control" type="datetime-local" value="2018-10-14T13:45:00" id="example-datetime-local-input">
 
 
@@ -356,35 +358,54 @@
 
 
               <div class="form-group">
-                <label for="exampleFormControlTextarea1"> Onde aconteceu?</label>
+                <label for="exampleFormControlTextarea1"> Onde aconteceu?*</label>
                 <textarea class="form-control"></textarea>
               </div>
             </fieldset>
             <br>
+
             <fieldset>
+            <legend>Provas da Denúncia</legend> </br>
 
-              <legend>Provas da Denúncia</legend> </br>
 
+<div class="container">
+    
+ <div class="form-group row custom-upload">
 
-              <div class="container">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div id="dragandrophandler">
-                      Arraste e Jogue Imagens, Vídeos ou Áudios.
-                    </div>
-                    <div id="status1"></div>
-                  </div>
-                </div>
+ 
+    <div class="col-md-6">
+      <div data-role="dynamic-fields">
+            <div class="form-inline form-row">
+      
+               
+              <!-- file upload start-->
+              <div class="mb-2 mr-sm-2 col-sm-5 wrap-input-container">
+                <label class="custom-file-upload form-control">
+                  <i class="fa fa-cloud-upload"></i> Upload Document
+                </label>
+
+                <input class="file-upload" name="file_name" type="file">
               </div>
+         <!-- file upload ends-->                
+                            
+        <button class="btn btn-sm btn-danger  mb-2" data-role="remove">
+         <i class="fa fa-minus"></i>
+        </button>
+        <button class="btn btn-sm btn-info  mb-2" data-role="add">
+            <i class="fa fa-plus"></i>
+        </button>
+                
+                
+            </div>  <!-- /div.form-inline -->
+        </div>  <!-- /div[data-role="dynamic-fields"] -->   
+    </div>
+ </div>
+</div>
+            
             </fieldset>
             <br>
+  <button type="button" class="btn btn-danger">Enviar Denúncia</button>
 
-            <div class="form-row">
-              <div class="form-group col-md-12">
-                <button type="button" class="btn btn-lg btn-primary" disabled>Enviar</button>
-              </div>
-            </div>
-        </div>
         </form>
 
       </div>
@@ -484,6 +505,7 @@
 
   <script type="text/javascript" src="js/orgao.js"></script>
   <script type="text/javascript" src="js/jquery.animateNumber.js"></script>
+  <script type="text/javascript" src="js/upload.js"></script>
 
 </body>
 
