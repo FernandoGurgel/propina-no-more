@@ -12,6 +12,7 @@ $(document).ready(function () {
 	})
 
 	$("#anoEdital").change(function(){
+		$("#cboOrgao").prop('disabled', false);
 		$("#cboOrgao").val("nenhum");
 		$('#listaCompras > tr').empty();
 	})
@@ -40,20 +41,15 @@ function popularEditais(ano, sigla){
 				var num = dadosOrgaos[x].valor + " ";
 				var ponto = num.indexOf(".") + 3;
 				var valor = (num.substring(0, ponto));
-				$('#listaCompras').append('<tr><td>' + dadosOrgaos[x].edital + '</td><td>' + dadosOrgaos[x].objeto + '</td><td>' + dadosOrgaos[x].empresa + '</td><td class="valorTabela">' + valor + '</td><td>' + dadosOrgaos[x].situacao + '</td></tr>');
+				$('#listaCompras').append('<tr><td>' + dadosOrgaos[x].edital + '</td><td>' + dadosOrgaos[x].empresa + '</td><td>' + dadosOrgaos[x].situacao + '</td></tr>');
 			}
-		}
-		$('.valorTabela').priceFormat({
-			prefix: 'R$ ',
-			centsSeparator: ',',
-			thousandsSeparator: '.'
-		});
+		}		
 		$("#circle").hide();
 	})  
 	  .fail(function() {
 		$('#listaCompras').append('<tr><td class="text-center" colspan=5> Não há registros para o órgão selecionado</td><tr>');
 	  })
 	 ;	
-	
+	 
 	
 }
