@@ -3,21 +3,43 @@ $(document).ready(function () {
 	popularOrgao();	
 	
 	$("#cboOrgao").change(function(){
+		$('#listaCompras > tr').empty();
+		$("#anoEdital").prop('disabled', false);
+		$("#anoEdital").val("nenhum");		
+	})
+
+	$("#anoEdital").change(function(){
 		var ano = $("#anoEdital").val();
 		var orgao = $("#cboOrgao").val();
 		if(ano!=null && orgao !=null){
 			$("#tabelaEdital").show();
-			!popularEditais(ano, orgao);
+			popularEditais(ano, orgao);
 		}
 	})
 
-	$("#anoEdital").change(function(){
-		$("#cboOrgao").prop('disabled', false);
-		$("#cboOrgao").val("nenhum");
-		$('#listaCompras > tr').empty();
-	})
-	
+	// $(".btnSelecionarEdital").click(function(){
+	// 	var id = $(this).attr('id');
+	// 	var dados = id.split("##");
+	// 	var edital = dados[0];
+	// 	var empresa = dados[1];
+	// })
+
 });
+
+function carregarItensBotao(elem){	
+	var id = $(elem).attr('id');	
+	var dados = id.split("##");
+	var edital = dados[0];
+	var empresa = dados[1];
+	var situacao = dados[2];
+	var json = {
+		'edital': edital,
+		'empresa': empresa,
+		'situacao': situacao
+	}
+	var json = JSON.parse(json);
+	
+}
 
 function popularOrgao(){
 	var sigla = [];
@@ -41,7 +63,8 @@ function popularEditais(ano, sigla){
 				var num = dadosOrgaos[x].valor + " ";
 				var ponto = num.indexOf(".") + 3;
 				var valor = (num.substring(0, ponto));
-				$('#listaCompras').append('<tr><td>' + dadosOrgaos[x].edital + '</td><td>' + dadosOrgaos[x].empresa + '</td><td>' + dadosOrgaos[x].situacao + '</td></tr>');
+				id = dadosOrgaos[x].edital+"##"+dadosOrgaos[x].empresa+"##"+dadosOrgaos[x].situacao;
+				$('#listaCompras').append('<tr><td id="orgao'+[x]+'">' + dadosOrgaos[x].edital + '</td><td id="empresa'+[x]+'">' + dadosOrgaos[x].empresa + '</td><td id="situacao'+[x]+'">' + dadosOrgaos[x].situacao + '</td><td><button type="button" id="'+id+'" onclick="carregarItensBotao(this)" class="btnSelecionarEdital">Selecionar</button></td></tr>');
 			}
 		}		
 		$("#circle").hide();

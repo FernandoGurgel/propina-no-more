@@ -187,8 +187,8 @@
 
                 
                 <div class="form-group col-md-12">
-                  <label for="exampleFormControlSelect1">Orgão*</label>
-                  <select class="form-control" id="cboOrgao" disabled>
+                  <label for="exampleFormControlSelect1">Orgão</label>
+                  <select class="form-control" id="cboOrgao">
                     <option value="nenhum">Escolha um órgao...</option>
                   </select>
                 </div>
@@ -201,12 +201,12 @@
 
 
             <fieldset>
-              <legend>Procurar Licitação</legend>
+              <legend>Procurar Edital de Licitação</legend>
               <div class="form-row">
 
                 <div class="form-group col-md-4">
                   <label for="ano">Ano</label>
-                  <select class="form-control" id="anoEdital">
+                  <select class="form-control" id="anoEdital" disabled>
                     <option value="nenhum">Escolha um ano...</option>
                     <option value="2018">2018</option>
                     <option value="2017">2017</option>
@@ -236,6 +236,9 @@
                       <th class="th-sm">Status
                         <i class="fa" aria-hidden="true"></i>
                       </th>
+                      <th class="th-sm">Opções
+                          <i class="fa" aria-hidden="true"></i>
+                        </th>
                     </tr>
                   </thead>
                   <tbody id="listaCompras">
