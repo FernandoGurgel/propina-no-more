@@ -21,7 +21,7 @@ $(document).ready(function () {
 
 function popularOrgao(){
 	var sigla = [];
-	var descricao = [];
+	var descricao = [];	
 	$.getJSON("Back-end/json/orgaos.json", function (orgaos) {
 		for (x = 0; x < orgaos.length; x++) {
 			sigla.push(orgaos[x].sigla);
@@ -32,7 +32,7 @@ function popularOrgao(){
 	
 }
 
-function popularEditais(ano, sigla){		
+function popularEditais(ano, sigla){			
 	$("#circle").show();
 	$('#listaCompras > tr').empty();
 	$.getJSON("Back-end/json_edital/valor_edital_"+ano+".json", function (dadosOrgaos) {	
