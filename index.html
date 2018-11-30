@@ -180,6 +180,23 @@
           <div align="center"><h1>Formulário de Denúncia</h1></div>
           <br>
           <form>
+		  
+		  <fieldset>
+              <legend>Escolha o Órgão</legend>
+              <div class="form-row">
+
+                
+                <div class="form-group col-md-12">
+                  <label for="exampleFormControlSelect1">Orgão*</label>
+                  <select class="form-control" id="cboOrgao" disabled>
+                    <option value="nenhum">Escolha um órgao...</option>
+                  </select>
+                </div>
+                
+              </div>
+            </fieldset>
+            <br>
+        
 
 
 
@@ -188,7 +205,7 @@
               <div class="form-row">
 
                 <div class="form-group col-md-4">
-                  <label for="ano">Ano*</label>
+                  <label for="ano">Ano</label>
                   <select class="form-control" id="anoEdital">
                     <option value="nenhum">Escolha um ano...</option>
                     <option value="2018">2018</option>
@@ -196,12 +213,7 @@
                     <option value="2016">2016</option>
                   </select>
                 </div>
-                <div class="form-group col-md-8">
-                  <label for="exampleFormControlSelect1">Orgão*</label>
-                  <select class="form-control" id="cboOrgao" disabled>
-                    <option value="nenhum">Escolha um órgao...</option>
-                  </select>
-                </div>
+                
                 <div class="form-group">
                   <div style="display:none" id="circle">
                     <div class="loader"></div>
