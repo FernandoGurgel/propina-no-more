@@ -36,7 +36,7 @@
 
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet">
-  <link href="css/upload.css" rel="stylesheet">
+  <!-- <link href="css/upload.css" rel="stylesheet"> -->
 
   <!-- MDBootstrap Datatables  -->
 
@@ -45,6 +45,7 @@
 
 
   <script src="lib/jquery/jquery.min.js"></script>
+  
   
 </head>
 
@@ -154,11 +155,54 @@
           <h2>
             #TOP DENUNCIADOS
           </h2>
-          </br>          
-          <div id="topDenunciados">
-            <ul class="event-list">                         
-            </ul>
-          </div>
+          </br>
+          <ul class="event-list">
+            <li>
+              <time datetime="2014-07-20 0000">
+                <span class="day">#1</span>
+                
+              </time>
+              <div class="info">
+                <h2 class="title">SEFALC</h2>
+                <p class="desc">Secretaria das Falcatruas</p>
+                  <ul>
+                    <li style="width:100%;"><span class="fa fa-bullhorn"></span> 60 Denúncias Realizadas</li>
+                  </ul>
+              </div>
+            </li>
+            <li>
+              <time datetime="2014-07-20 0000">
+                <span class="day">#2</span>
+                
+              </time>
+              <div class="info">
+                <h2 class="title">MDEV</h2>
+                <p class="desc">Ministério dos Desvios</p>
+                <ul>
+                  <li style="width:100%;"><span class="fa fa-bullhorn"></span> 50 Denúncias Realizadas</li>
+                </ul>
+              </div>
+            </li>
+
+            <li>
+              <time datetime="2014-07-20 0000">
+                <span class="day">#3</span>
+                
+              </time>
+              <div class="info">
+                <h2 class="title">AMEA</h2>
+                <p class="desc">Assembleia das Ameaças</p>
+                <ul>
+                  <li style="width:100%;"><span class="fa fa-bullhorn"></span> 25 Denúncias Realizadas</li>
+                </ul>
+              </div>
+            </li>
+
+
+ 
+
+
+          </ul>
         </div>
 
 
@@ -179,46 +223,28 @@
 		<br><br><br>
           <div align="center"><h1>Formulário de Denúncia</h1></div>
           <br>
-          <form>
-		  
-		  <fieldset>
-              <legend>Escolha o Órgão</legend>
-              <div class="form-row">
-
-                
-                <div class="form-group col-md-12">
-                  <label for="exampleFormControlSelect1">Orgão</label>
-                  <select class="form-control" id="cboOrgao">
-                    <option value="nenhum">Escolha um órgao...</option>
-                  </select>
-                </div>
-                
-              </div>
-            </fieldset>
-            <br>
-        
+          <form method="POST" id="formDenuncia">
 
 
 
             <fieldset>
-              <legend>Procurar Edital de Licitação</legend>
+              <legend>Procurar Licitação</legend>
               <div class="form-row">
 
                 <div class="form-group col-md-4">
-                  <label for="ano">Ano</label>
-                  <select class="form-control" id="anoEdital" disabled>
+                  <label for="ano">Ano*</label>
+                  <select class="form-control" id="anoEdital" name="ano" required>
                     <option value="nenhum">Escolha um ano...</option>
                     <option value="2018">2018</option>
                     <option value="2017">2017</option>
                     <option value="2016">2016</option>
                   </select>
                 </div>
-                
-                <div class="form-group">
-                  <div style="display:none" id="circle">
-                    <div class="loader"></div>
-                  </div>
-
+                <div class="form-group col-md-8">
+                  <label for="exampleFormControlSelect1">Orgão*</label>
+                  <select class="form-control" id="cboOrgao" name="orgao" required>
+                    <option value="nenhum">Escolha um órgao...</option>
+                  </select>
                 </div>
                 
               </div>
@@ -229,19 +255,23 @@
                     <tr>
                       <th class="th-sm">Edital de Referencia
                         <i class="fa" aria-hidden="true"></i>
-                      </th>                     
+                      </th>
+                      <th class="th-sm">Objeto Licitado
+                        <i class="fa" aria-hidden="true"></i>
+                      </th>
                       <th class="th-sm">Ganhador
                         <i class="fa" aria-hidden="true"></i>
-                      </th>                    
+                      </th>
+                      <th class="th-sm">Valor
+                        <i class="fa" aria-hidden="true"></i>
+                      </th>
                       <th class="th-sm">Status
                         <i class="fa" aria-hidden="true"></i>
                       </th>
-                      <th class="th-sm">Opções
-                          <i class="fa" aria-hidden="true"></i>
-                        </th>
                     </tr>
                   </thead>
                   <tbody id="listaCompras">
+                    <tr></tr>
                   </tbody>
                 </table>
 
@@ -251,15 +281,15 @@
             <fieldset>
 
               <legend>Lista dos Denunciados</legend> </br>
-              <div data-role="dynamic-fields">
+              <div data-role="dynamic-fields" id="denunciados">
                 <div class="form-inline">
                   <div class="form-group">
                     <label class="sr-only" for="field-name">Nome</label>
-                    <input type="text" class="form-control" id="field-name" placeholder="Nome">&nbsp;
+                    <input type="text" class="form-control" id="field-name" placeholder="Nome" name="nomeDenunciado" required>&nbsp;
                     <label class="sr-only" for="field-cargo">Cargo</label>
-                    <input type="text" class="form-control" id="field-cargo" placeholder="Cargo">&nbsp;
+                    <input type="text" class="form-control" id="field-cargo" placeholder="Cargo" name="cargoDenunciado" >&nbsp;
                     <label class="sr-only" for="field-infoadd">Informações Adicionais</label>
-                    <input type="text" class="form-control" id="field-infoadd" placeholder="Informações Adicionais">&nbsp;
+                    <input type="text" class="form-control" id="field-infoadd" placeholder="Informações Adicionais" name="infoDenunciado">&nbsp;
 
                     <button class="btn btn-sm btn-danger" data-role="remove">
                       <i class="fa fa-minus"></i>
@@ -281,24 +311,24 @@
             <fieldset>
 
               <legend>Sigilo na Denúncia</legend>
-              <input type="checkbox" id="show" checked> <label for="show"> Deseja que sua denúncia seja tratada com
-                sigilosidade?</label>
-
+              <input type="checkbox" id="sigilo" checked value="S" name="sigilo"> 
+                <label for="show"> Deseja que sua denúncia seja tratada com sigilosidade?</label>
+              
               <div class="teste">
 
-                <div class="form-group">
+                <div class="form-group" >
 
                   <div class="form-group">
                     <label for="formGroupExampleInput">Nome</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+                    <input type="text" class="form-control" id="nomeDenunciante" placeholder="" name="nome">
                   </div>
                   <div class="form-group">
                     <label for="exampleFormControlInput1">Email</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                    <input type="email" class="form-control" id="emailDenunciante" placeholder="name@example.com" name="email" >
                   </div>
                   <div class="form-group">
                     <label for="exampleFormControlInput1">Telefone Celular</label>
-                    <input type="text" class="form-control bfh-phone" data-format="+(dd) ddddd-dddd" placeholder="(99) 99999-9999">
+                    <input type="text" class="form-control bfh-phone" id="telefoneDenunciante" data-format="+(dd) ddddd-dddd" placeholder="(99) 99999-9999" name="Telefone">
                   </div>
 
 
@@ -307,33 +337,32 @@
             </fieldset>
 
             <br>
+          
 
             <fieldset>
 
               <legend>Dados da Denúncia</legend> </br>
               <div class="form-group">
                 <label for="exampleFormControlTextarea1">O que aconteceu?*</label>
-                <textarea class="form-control"></textarea>
+                <textarea class="form-control" id="oque" name="oque" required></textarea>
               </div>
 
               <div class="form-group">
                 <label for=" exampleFormControlTextarea1">Quando aconteceu?*</label>
-                <input class="form-control" type="datetime-local" value="2018-10-14T13:45:00" id="example-datetime-local-input">
-
-
-
-
-
+                <input class="form-control" id="quando" type="datetime-local" value="2018-10-14T13:45:00"  name="quando" required>
               </div>
 
 
               <div class="form-group">
                 <label for="exampleFormControlTextarea1"> Onde aconteceu?*</label>
-                <textarea class="form-control"></textarea>
+                <textarea class="form-control" id="onde" name="onde" required></textarea>
               </div>
             </fieldset>
             <br>
+            
 
+              <div id="evidencia"></div>
+          
             <fieldset>
             <legend>Provas da Denúncia</legend> </br>
 
@@ -346,27 +375,15 @@
     <div class="col-md-6">
       <div data-role="dynamic-fields">
             <div class="form-inline form-row">
-      
-               
-              <!-- file upload start-->
-              <div class="mb-2 mr-sm-2 col-sm-5 wrap-input-container">
-                <label class="custom-file-upload form-control">
-                  <i class="fa fa-cloud-upload"></i> Upload Document
-                </label>
-
-                <input class="file-upload" name="file_name" type="file">
-              </div>
-         <!-- file upload ends-->                
-                            
-        <button class="btn btn-sm btn-danger  mb-2" data-role="remove">
-         <i class="fa fa-minus"></i>
-        </button>
-        <button class="btn btn-sm btn-info  mb-2" data-role="add">
-            <i class="fa fa-plus"></i>
-        </button>
-                
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Adiciona evidência
+              </button>
                 
             </div>  <!-- /div.form-inline -->
+            <div class="input-form">
+              <br>
+                <div id="listFiles"></div>  
+            </div>
         </div>  <!-- /div[data-role="dynamic-fields"] -->   
     </div>
  </div>
@@ -374,16 +391,16 @@
             
             </fieldset>
             <br>
-  <button type="button" class="btn btn-danger">Enviar Denúncia</button>
+  <button type="button" id="submitDenuncia" class="btn btn-danger">Enviar Denúncia</button>
 
-        </form>
+        
+</div>
 
-      </div>
-
-      <div class="clearfix"></div>
-    </div>
-    </div>
-    </div>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+</form>
 
   </section>
 
@@ -435,6 +452,38 @@
   <a class="scrolltop" href="#"><span class="fa fa-angle-up"></span></a>
 
 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Adiciona evidência</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+          <div class="form-group">
+            <label class="control-label" for="uploadfile">Enviar arquivo: </label>
+            <input type="file" class="form-control" id="uploadfile" placeholder="Enviar arquivo"  name="prova"/>
+          </div>
+          
+          
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" id="btnSubmit" data-dismiss="modal">Enviar</button>
+              
+          </div>
+        </form> 
+    </div>
+  </div>
+</div>
+
+
+
   <!-- Required JavaScript Libraries -->
   <script type="text/javascript" src="js/datatables.min.js"></script>
   <script src="js/jquery.priceformat.min.js"></script>
@@ -449,7 +498,7 @@
   <script src="lib/easing/easing.js"></script>
   <script src="lib/stickyjs/sticky.js"></script>
   <script src="lib/lockfixed/lockfixed.min.js"></script>
-  <script src="lib/font-awesome/js/fontawesome.min.js"></script>
+  <script src="lib/fontawesome 5/fontawesome-free-5.5.0-web/js/fontawesome.min.js"></script>
 
   <!-- Template Specisifc Custom Javascript File -->
   <script src="js/custom.js"></script>
@@ -457,23 +506,23 @@
   <script src="contactform/contactform.js"></script>
 
   <script type="text/javascript">
-    // $("tr").click(function () {
-    //   alert("teste");
-    //   $(this).css("background", "cyan")
-    // });
+    $("tr").click(function () {
+      alert("teste");
+      $(this).css("background", "cyan")
+    });
   </script>
 
   <script type="text/javascript">
-    // $("tr").click(function () {
-    //   $("tr").each(function (index) {
-    //     if (index % 2 == 0)
-    //       $(this).css("background", "white")
-    //     else
-    //       $(this).css("background", "#F0F0F0")
+    $("tr").click(function () {
+      $("tr").each(function (index) {
+        if (index % 2 == 0)
+          $(this).css("background", "white")
+        else
+          $(this).css("background", "#F0F0F0")
 
-    //   });
-    //   $(this).css("background", "cyan")
-    // });
+      });
+      $(this).css("background", "cyan")
+    });
   </script>
 
   <script type="text/javascript" src="js/orgao.js"></script>
