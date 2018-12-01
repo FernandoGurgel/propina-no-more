@@ -1,0 +1,13 @@
+git clone git@github.com:propina-no-more/code.git
+git pull
+git checkout -b ajusteDeLink
+git add .
+git commit -m "..."
+git push -u orign ajusteDeLink
+git checkout master
+git merge ajusteDeLink
+git push -u origin master
+
+#
+ignorar alteracao que nao foi realizada
+git checkout sobre.html
