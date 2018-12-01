@@ -36,7 +36,7 @@
 
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet">
-  <!-- <link href="css/upload.css" rel="stylesheet"> -->
+  <link href="css/upload.css" rel="stylesheet">
 
   <!-- MDBootstrap Datatables  -->
 
@@ -45,7 +45,6 @@
 
 
   <script src="lib/jquery/jquery.min.js"></script>
-  
   
 </head>
 
@@ -155,54 +154,11 @@
           <h2>
             #TOP DENUNCIADOS
           </h2>
-          </br>
-          <ul class="event-list">
-            <li>
-              <time datetime="2014-07-20 0000">
-                <span class="day">#1</span>
-                
-              </time>
-              <div class="info">
-                <h2 class="title">SEFALC</h2>
-                <p class="desc">Secretaria das Falcatruas</p>
-                  <ul>
-                    <li style="width:100%;"><span class="fa fa-bullhorn"></span> 60 Denúncias Realizadas</li>
-                  </ul>
-              </div>
-            </li>
-            <li>
-              <time datetime="2014-07-20 0000">
-                <span class="day">#2</span>
-                
-              </time>
-              <div class="info">
-                <h2 class="title">MDEV</h2>
-                <p class="desc">Ministério dos Desvios</p>
-                <ul>
-                  <li style="width:100%;"><span class="fa fa-bullhorn"></span> 50 Denúncias Realizadas</li>
-                </ul>
-              </div>
-            </li>
-
-            <li>
-              <time datetime="2014-07-20 0000">
-                <span class="day">#3</span>
-                
-              </time>
-              <div class="info">
-                <h2 class="title">AMEA</h2>
-                <p class="desc">Assembleia das Ameaças</p>
-                <ul>
-                  <li style="width:100%;"><span class="fa fa-bullhorn"></span> 25 Denúncias Realizadas</li>
-                </ul>
-              </div>
-            </li>
-
-
- 
-
-
-          </ul>
+          </br>          
+          <div id="topDenunciados">
+            <ul class="event-list">                         
+            </ul>
+          </div>
         </div>
 
 
@@ -224,27 +180,45 @@
           <div align="center"><h1>Formulário de Denúncia</h1></div>
           <br>
           <form method="POST" id="formDenuncia">
+		  
+		  <fieldset>
+              <legend>Escolha o Órgão</legend>
+              <div class="form-row">
+
+                
+                <div class="form-group col-md-12">
+                  <label for="exampleFormControlSelect1">Orgão</label>
+                  <select class="form-control" id="cboOrgao" name="orgao">
+                    <option value="nenhum">Escolha um órgao...</option>
+                  </select>
+                </div>
+                
+              </div>
+            </fieldset>
+            <br>
+        
 
 
 
             <fieldset>
-              <legend>Procurar Licitação</legend>
+              <legend>Procurar Edital de Licitação</legend>
               <div class="form-row">
 
                 <div class="form-group col-md-4">
-                  <label for="ano">Ano*</label>
-                  <select class="form-control" id="anoEdital" name="ano" required>
+                  <label for="ano">Ano</label>
+                  <select class="form-control" id="anoEdital" name="ano" disabled>
                     <option value="nenhum">Escolha um ano...</option>
                     <option value="2018">2018</option>
                     <option value="2017">2017</option>
                     <option value="2016">2016</option>
                   </select>
                 </div>
-                <div class="form-group col-md-8">
-                  <label for="exampleFormControlSelect1">Orgão*</label>
-                  <select class="form-control" id="cboOrgao" name="orgao" required>
-                    <option value="nenhum">Escolha um órgao...</option>
-                  </select>
+                
+                <div class="form-group">
+                  <div style="display:none" id="circle">
+                    <div class="loader"></div>
+                  </div>
+
                 </div>
                 
               </div>
@@ -255,23 +229,19 @@
                     <tr>
                       <th class="th-sm">Edital de Referencia
                         <i class="fa" aria-hidden="true"></i>
-                      </th>
-                      <th class="th-sm">Objeto Licitado
-                        <i class="fa" aria-hidden="true"></i>
-                      </th>
+                      </th>                     
                       <th class="th-sm">Ganhador
                         <i class="fa" aria-hidden="true"></i>
-                      </th>
-                      <th class="th-sm">Valor
-                        <i class="fa" aria-hidden="true"></i>
-                      </th>
+                      </th>                    
                       <th class="th-sm">Status
                         <i class="fa" aria-hidden="true"></i>
                       </th>
+                      <th class="th-sm">Opções
+                          <i class="fa" aria-hidden="true"></i>
+                        </th>
                     </tr>
                   </thead>
                   <tbody id="listaCompras">
-                    <tr></tr>
                   </tbody>
                 </table>
 

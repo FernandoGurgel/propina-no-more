@@ -1,5 +1,7 @@
 var datalist = [];
 
+var editalPersist = [];
+
 $(document).ready(() => {
     $("#btnSubmit").click((event) => {
         //stop submit the form, we will post it manually.
@@ -34,7 +36,7 @@ $(document).ready(() => {
         prova = provaLista(prova);
 
         dados = { "ano": ano,"oque":oque,"onde":onde,"quando":quando,"sigilo": sigilo, "nome":denuncianteNome, "telefone":denuncianteTelefone, 
-        
+        "edital": editalPersist,
         "orgao": { "sigla": sigla, "nome": orgao },  "denunciado" : lista, "provas": prova};
 
         $.ajax({
@@ -48,10 +50,33 @@ $(document).ready(() => {
         });
         
         alert('Denúncia enviada com sucesso!');
-        window.open('index.html');
     });
 });
 
+
+function carregarItensBotao(elem){
+    var valor = $("#cboOrgao").val();
+    var sigla = valor.substring(0, valor.indexOf("-"));
+    var orgao = valor.substring(valor.indexOf("-") + 1);
+    var id = $(elem).attr('id');	
+	var dados = id.split("##");
+	var edital = dados[0];
+	var empresa = dados[1];
+	var situacao = dados[2];
+	var json = {
+		'ganhador': empresa,
+        'referencia': edital,
+        "objetoLicitado":"",
+		'status': situacao,
+        "orgao_id": { 
+            "nome": orgao,
+            "sigla": sigla 
+        }	
+	}
+    editalPersist.push(json);
+    alert("Edital: "+editalPersist[0].referencia);
+	
+}
 
 function provaLista(prova){
     var listacodProva = document.querySelectorAll("div#evidencia input#codProva");
