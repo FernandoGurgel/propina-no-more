@@ -6,13 +6,25 @@ http://aishek.github.io/jquery-animateNumber/
 
 $(document).ready(function () {    
 
-    $.getJSON("http://13.82.130.246:9000/api/v1/denuncia/top", function(data){
-        for(i=0; i<data.length; i++){
-            
-            posicao = i + 1;
-            $("#topDenunciados ul").append('<li><time><span class="day" id="posicao">'+posicao+'º</span></time><div class="info"><h2 class="title" id="sigla">'+data[i].sigla+'</h2><br><p class="desc" id="nomeOrgao">'+data[i].nome+'</p><p class="desc" id="qtdeDenuncias">Denúncias registradas: '+data[i].quantidade+'</li></div></li>')
-        }      
-    })
+
+    //var nextElement = ;
+
+    /*$("#next").click(function() {
+        //var nextElement = $('#ano > option:selected').next('option');
+        nextElement = $('#ano > option:selected').next('option');
+        if (nextElement.length > 0) {
+        $('#ano > option:selected').removeAttr('selected').next('option').attr('selected', 'selected');
+        rodarGastometro();
+        }
+    });
+
+    $("#prev").click(function() {
+        nextElement = $('#ano > option:selected').prev('option');
+        if (nextElement.length > 0) {
+        $('#ano > option:selected').removeAttr('selected').prev('option').attr('selected', 'selected');
+        rodarGastometro();
+        }
+    }); */
 
     var guardarano = 2018;
     rodarGastometro();
@@ -37,9 +49,12 @@ $(document).ready(function () {
         }
     }); 
 
+
+
     $('#ano').change(function(){
         rodarGastometro();
     });
+
 
     function rodarGastometro() {
         //var ano = $('#ano').val(); 
@@ -128,9 +143,13 @@ $(document).ready(function () {
         });
     }
 
+    
+
+
     /*
     TABELA COM TABULACAO TRADUCAO
     */
+
     $(document).ready(function () {
         var table = $('#dtBasicExample').DataTable();
 
@@ -297,6 +316,14 @@ $(document).ready(function () {
         return false;
     });
 
+
+
+
+
+
+
+
+
 });
 
 /*
@@ -380,6 +407,8 @@ function createStatusbar(obj) {
         });
     }
 }
+
+
 
 $(function() {
     // Remove button click
